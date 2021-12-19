@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "@reach/router";
 
 const Posts = () => {
   const [posts, setPosts] = useState([]);
@@ -22,8 +21,12 @@ const Posts = () => {
       {posts.map((post) => (
         <div key={post.username}>
           <h2>
-            <Link to={`/posts/${post.username}`}>{post.title}</Link>
+            {post.title}
           </h2>
+          <p>{post.content}</p>
+          <p>
+            <em>Published {new Date(post.published_at/1).toLocaleString()} by {post.username}</em>
+          </p>
         </div>
       ))}
     </div>
