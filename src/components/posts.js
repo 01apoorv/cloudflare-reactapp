@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "@reach/router";
 
 const Posts = () => {
   const [posts, setPosts] = useState([]);
@@ -15,6 +16,13 @@ const Posts = () => {
     getPosts();
   }, []);
 
+  const borderStyle = {
+    height: '1px',
+    "border-width": '0',
+    color: 'black',
+    "background-color": 'black'
+  };
+
   return (
     <div>
       <h1>Posts</h1>
@@ -25,8 +33,12 @@ const Posts = () => {
           </h2>
           <p>{post.content}</p>
           <p>
-            <em>Published {new Date(post.published_at/1).toLocaleString()} by {post.username}</em>
+            <em>Posted {new Date(post.published_at/1).toLocaleString()} by {post.username}</em>
           </p>
+          <p>
+            Likes: {post.likes} <Link to={`/like/${post.published_at}`}>Like</Link> <Link to={`/dislike/${post.published_at}`}>Dislike</Link>
+          </p>
+          <hr style={borderStyle}></hr>     
         </div>
       ))}
     </div>
