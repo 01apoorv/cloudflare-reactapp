@@ -8,7 +8,7 @@ const Like = ({ id }) => {
         'Content-Type': 'application/json'
         },
         method: "POST",
-        body: {id, "val":1}
+        body: JSON.stringify({id, "val":1})
     })
     return(<Posts />);
 }; 
