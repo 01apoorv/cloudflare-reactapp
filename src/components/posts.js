@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "@reach/router";
 
 const Posts = () => {
   const [posts, setPosts] = useState([]);
-
+  
   useEffect(() => {
     const getPosts = async () => {
       const resp = await fetch(
@@ -18,10 +17,23 @@ const Posts = () => {
 
   const borderStyle = {
     height: '1px',
-    "border-width": '0',
+    borderWidth: '0',
     color: 'black',
-    "background-color": 'black'
+    backgroundColor: 'black'
   };
+
+  function like(id, val) {
+    fetch("https://hiringproj.01apoorv719.workers.dev/like",
+    {
+        headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+        },
+        method: "POST",
+        body: JSON.stringify({id, val})
+    });
+    window.location.reload(true);
+  }
 
   return (
     <div>
@@ -36,7 +48,7 @@ const Posts = () => {
             <em>Posted {new Date(post.published_at/1).toLocaleString()} by {post.username}</em>
           </p>
           <p>
-            Likes: {post.likes} <Link to={`/like/${post.published_at}`}>Like</Link> <Link to={`/dislike/${post.published_at}`}>Dislike</Link>
+            Likes: {post.likes} <button onClick={() => like(post.published_at, 1)}>Like</button> <button onClick={() => like(post.published_at, -1)}>Dislike</button>
           </p>
           <hr style={borderStyle}></hr>     
         </div>
