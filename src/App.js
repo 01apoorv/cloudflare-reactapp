@@ -33,7 +33,7 @@ const App = () => {
     <div style={{padding: "25px"}}>
       <h2>Posts</h2>
       <div style={{marginBottom: "15px"}}>
-        <a href="/post.html">Make a post</a>
+        <a href="/post.html" style={{color: "gray"}}>Make a post</a>
       </div>
       {posts.map((post) => (
         <div key={post.published_at} className="card border border-primary" style={{marginBottom: "25px"}}>
