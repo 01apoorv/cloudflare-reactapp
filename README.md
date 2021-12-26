@@ -2,6 +2,8 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+The way this works is by submitting a GET request to a backend server configured using Cloudflare Workers. All the posts are stored using Workers KV. This gets all the posts in JSON and outputs them. The like/dislike buttons submit a POST request to the server using the timestamp as an ID and updating the like counter for the post. The "Make a post" page essentially does the same thing.
+
 ## Available Scripts
 
 In the project directory, you can run:
